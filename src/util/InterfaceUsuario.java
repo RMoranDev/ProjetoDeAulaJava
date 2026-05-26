@@ -24,6 +24,24 @@ public class InterfaceUsuario {
         return valor;
     }
 
+    public double pedirValorEntrada(double valorImovel) {
+        double entrada = -1; // valor inválido garante que o loop execute pelo menos uma vez
+        do {
+            System.out.println("Digite o valor da entrada: ");
+
+            try {
+                entrada = sc.nextDouble();
+                if (entrada < (valorImovel * 0.20) || entrada <= 0) {
+                    System.out.println("Erro: o valor mínimo é de 20% o valor do imóvel. Tente novamente.");
+                }
+            } catch (InputMismatchException erro) {
+                System.out.println("Erro: digite um valor válido. Tente novamente.");
+                sc.next(); // serve para consumir e descartar essa entrada inválida da fila
+            }
+        } while (entrada < (valorImovel * 0.20) || entrada <= 0); // continua repetindo se for inválido
+        return entrada;
+    }
+
     public int pedirPrazoFinanciamento() {
         int prazo = -1; // valor inválido garante que o loop execute pelo menos uma vez
         do {
